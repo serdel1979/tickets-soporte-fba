@@ -5,12 +5,14 @@ import { IUser } from 'src/common/interfaces/user.interface';
 import { USER } from 'src/common/models/models';
 import { LoginAuthDto } from './dto/login-auth.dto';
 import { bcrypt, compare } from 'bcrypt';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
 
 
-  constructor(@InjectModel(USER.name) private readonly userModel: Model<IUser>) { }
+  constructor(@InjectModel(USER.name) private readonly userModel: Model<IUser>,
+  private jwtService: JwtService) { }
 
 
   async hashPassword(password: string): Promise<string> {
@@ -25,9 +27,15 @@ export class AuthService {
       
       const checkPassword = await compare(password,findUser.password);
       if(!checkPassword) throw new HttpException('Usuario o clave incorrecto',403); 
-      const data = findUser;      
-
-
+      
+      const payload = {id:findUser._id, user:findUser.user}
+     
+      const token = await this.jwtService.sign(payload);
+      
+      const data = {
+        user: findUser,
+        token,
+      }      
       return data;
   }
 
