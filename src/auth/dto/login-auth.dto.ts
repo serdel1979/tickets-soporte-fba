@@ -8,6 +8,4 @@ export class LoginAuthDto {
     @MinLength(4)
     @MaxLength(12)
     password:string;
-    @IsNotEmpty()
-    roles: Role;
 }

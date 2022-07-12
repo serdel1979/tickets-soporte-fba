@@ -6,6 +6,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { USER } from 'src/common/models/models';
 import { Model } from 'mongoose';
 import { IUser } from 'src/common/interfaces/user.interface';
+import { exec } from 'child_process';
 
 @Injectable()
 export class UsersService {
@@ -28,15 +29,15 @@ export class UsersService {
     return this.model.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  findOne(id: string) {
+    return this.model.findById(id).exec();
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
+  update(id: string, updateUserDto: UpdateUserDto) {
     return `This action updates a #${id} user`;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} user`;
   }
 }
