@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
+import { HttpStatus, Injectable } from '@nestjs/common';
+import { UserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import * as bcrypt from 'bcrypt';
 import { InjectModel } from '@nestjs/mongoose';
@@ -19,7 +19,7 @@ export class UsersService {
     return await bcrypt.hash(password, salt);
   }
 
-  async create(createUserDto: CreateUserDto):Promise<IUser>{
+  async create(createUserDto: UserDto):Promise<IUser>{
     const hash = await this.hashPassword(createUserDto.password);
     const newUser = new this.model({ ...createUserDto, password: hash });
     return await newUser.save();
@@ -33,11 +33,14 @@ export class UsersService {
     return this.model.findById(id).exec();
   }
 
-  update(id: string, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: string, updateUserDto: UserDto):Promise<IUser> {
+    const hash = await this.hashPassword(updateUserDto.password);
+    const user = {...updateUserDto, password: hash}
+    return await this.model.findByIdAndUpdate(id,user,{new : true});
   }
 
-  remove(id: string) {
-    return `This action removes a #${id} user`;
+  async remove(id: string) {
+    await this.model.findByIdAndDelete(id);
+    return { status: HttpStatus.OK , msg: 'deleted' }
   }
 }
