@@ -20,8 +20,8 @@ export class AuthService {
     return await bcrypt.hash(password, salt);
   }
   
-  async login(createAuthDto: LoginAuthDto) {
-      const { user, password } = createAuthDto;
+  async login(userAuthDto: LoginAuthDto) {
+      const { user, password } = userAuthDto;
       const findUser = await this.userModel.findOne({user})
       if(!findUser) throw new HttpException('Usuario o clave incorrecto',403)
       

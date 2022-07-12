@@ -1,4 +1,5 @@
 import { IsNotEmpty, MaxLength, MinLength } from "class-validator";
+import { Role } from "src/common/role/role.enum";
 
 export class LoginAuthDto {
     @IsNotEmpty()
@@ -7,4 +8,6 @@ export class LoginAuthDto {
     @MinLength(4)
     @MaxLength(12)
     password:string;
+    @IsNotEmpty()
+    roles: Role;
 }

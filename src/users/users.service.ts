@@ -22,6 +22,7 @@ export class UsersService {
     console.log(createUserDto);
     const hash = await this.hashPassword(createUserDto.password);
     const newUser = new this.model({ ...createUserDto, password: hash });
+    console.log(newUser);
     return await newUser.save();
   }
 
