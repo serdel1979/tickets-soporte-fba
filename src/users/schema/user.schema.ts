@@ -4,7 +4,7 @@ import { Role } from 'src/common/role/role.enum';
 export const UserSchema = new mongoose.Schema({
     user:{ type: String, unique:true, required: true },
     password:{ type: String, required: true },
-    role:{ type: Object, required: true },
+    role:{ type: Array, required: true },
     equipment:[{type: mongoose.Schema.Types.ObjectId, ref: 'equipments'}],
 },{timestamps: true},);
 

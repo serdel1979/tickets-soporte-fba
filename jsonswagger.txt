@@ -1,0 +1,5 @@
+{
+"user":"soporte",
+"password":"soporte",
+"role":[{"Role":"admin"},{"Role":"user"}]
+}
