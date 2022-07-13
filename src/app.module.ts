@@ -8,6 +8,8 @@ import { AuthModule } from './auth/auth.module';
 import { RolesGuard } from './common/role/roles.guard';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/local-auth.guard';
+import { AuthController } from './auth/auth.controller';
+import { UsersController } from './users/users.controller';
 
 @Module({
   imports: [
@@ -19,9 +21,10 @@ import { JwtAuthGuard } from './auth/local-auth.guard';
       useNewUrlParser: true,
       useUnifiedTopology: true
     }),
-    UsersModule
+    UsersModule,
+    AuthModule
   ],
   controllers: [AppController],
-  providers: [{provide: APP_GUARD, useClass: RolesGuard},AppService],
+  providers: [AppService],
 })
 export class AppModule { }

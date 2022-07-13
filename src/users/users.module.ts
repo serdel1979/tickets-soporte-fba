@@ -18,6 +18,9 @@ import { RolesGuard } from 'src/common/role/roles.guard';
     ]),
   ],
   controllers: [UsersController],
-  providers: [UsersService]
+  providers: [UsersService,{
+    provide: APP_GUARD,
+    useClass: RolesGuard,
+  }]
 })
 export class UsersModule {}
