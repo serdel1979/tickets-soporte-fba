@@ -4,13 +4,13 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { AllExceptionFilter } from './common/filters/http.exceptions';
 import { TomeOutInterceptor } from './common/interceptors/timeout.interceptors';
+import { RolesGuard } from './common/role/roles.guard';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalFilters(new AllExceptionFilter());
   app.useGlobalInterceptors(new TomeOutInterceptor());
   app.useGlobalPipes(new ValidationPipe());
-
   const config = new DocumentBuilder()
     .addBearerAuth()
     .setTitle('Tickets')

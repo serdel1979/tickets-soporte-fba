@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, ExecutionContext } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -6,8 +6,7 @@ import { JwtAuthGuard } from '../auth/local-auth.guard';
 import { ApiBearerAuth } from '@nestjs/swagger';
 import { Roles } from 'src/common/role/roles.decorator';
 import { Role } from 'src/common/role/role.enum';
-import { RolesGuard } from 'src/common/role/roles.guard';
-import { AuthGuard } from '@nestjs/passport';
+import { RolesGuard } from '../common/role/roles.guard';
 
 
 
@@ -31,10 +30,9 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
-
-  @UseGuards(JwtAuthGuard)
-  @Roles(Role.Admin)
   @Get(':id')
+  @Roles(Role.Admin)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(id);
   }

@@ -1,5 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { Role } from 'src/common/role/role.enum';
+import { Roles } from 'src/common/role/roles.decorator';
 import { AuthService } from './auth.service';
 import { LoginAuthDto } from './dto/login-auth.dto';
 
