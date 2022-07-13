@@ -9,5 +9,5 @@ export class UserDto{
   @IsString()
   readonly  password:string;
   @IsNotEmpty()
-  readonly  role:Role;
+  readonly  roles:Role[];
 }

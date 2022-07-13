@@ -4,12 +4,19 @@ import { UserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { JwtAuthGuard } from '../auth/local-auth.guard';
 import { ApiBearerAuth } from '@nestjs/swagger';
+import { Roles } from 'src/common/role/roles.decorator';
+import { Role } from 'src/common/role/role.enum';
+import { RolesGuard } from 'src/common/role/roles.guard';
+import { AuthGuard } from '@nestjs/passport';
 
+
+
+@ApiBearerAuth()
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @ApiBearerAuth()
+  
   @UseGuards(JwtAuthGuard)
   @Post()
   create(@Body() createUserDto: UserDto) {
@@ -18,21 +25,21 @@ export class UsersController {
   }
 
   
-  @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
   @Get()
   findAll() {
     return this.usersService.findAll();
   }
 
-  @ApiBearerAuth()
+
   @UseGuards(JwtAuthGuard)
+  @Roles(Role.Admin)
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(id);
   }
 
-  @ApiBearerAuth()
+  
   @UseGuards(JwtAuthGuard)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UserDto) {
@@ -40,7 +47,7 @@ export class UsersController {
   }
 
 
-  @ApiBearerAuth()
+  
   @UseGuards(JwtAuthGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {

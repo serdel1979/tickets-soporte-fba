@@ -4,6 +4,8 @@ import { UsersController } from './users.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { USER } from 'src/common/models/models';
 import { UserSchema } from './schema/user.schema';
+import { APP_GUARD } from '@nestjs/core';
+import { RolesGuard } from 'src/common/role/roles.guard';
 
 @Module({
   imports: [
