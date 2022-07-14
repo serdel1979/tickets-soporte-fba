@@ -28,7 +28,8 @@ export class AuthService {
       const checkPassword = await compare(password,findUser.password);
       if(!checkPassword) throw new HttpException('Usuario o clave incorrecto',403); 
       
-      const payload = {id:findUser._id, user:findUser.user}
+      
+      const payload = {id:findUser._id, user:findUser.user, roles: findUser.roles}
      
       const token = await this.jwtService.sign(payload);
       
