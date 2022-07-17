@@ -7,7 +7,7 @@ import { TomeOutInterceptor } from './common/interceptors/timeout.interceptors';
 import { RolesGuard } from './common/role/roles.guard';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { cors: true });
   app.useGlobalFilters(new AllExceptionFilter());
   app.useGlobalInterceptors(new TomeOutInterceptor());
   app.useGlobalPipes(new ValidationPipe());
