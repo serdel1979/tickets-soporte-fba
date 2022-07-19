@@ -11,42 +11,41 @@ import { RolesGuard } from '../common/role/roles.guard';
 
 
 @ApiBearerAuth()
-@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard,RolesGuard)
 @ApiTags('users')
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   
-  //@Roles(Role.Admin)
+  @Roles(Role.Admin)
   @Post()
   create(@Body() createUserDto: UserDto) {
     return this.usersService.create(createUserDto);
   }
 
   
-  //@Roles(Role.Admin)
-  //@UseGuards(JwtAuthGuard)
+  @Roles(Role.Admin)
   @Get()
   findAll() {
     return this.usersService.findAll();
   }
 
-  //@Roles(Role.Admin)
+  @Roles(Role.Admin)
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(id);
   }
 
 
-  //@Roles(Role.Admin)
+  @Roles(Role.Admin)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UserDto) {
     return this.usersService.update(id, updateUserDto);
   }
 
 
-  //@Roles(Role.Admin)
+  @Roles(Role.Admin)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.usersService.remove(id);
