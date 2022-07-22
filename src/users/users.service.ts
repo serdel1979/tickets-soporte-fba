@@ -26,7 +26,7 @@ export class UsersService {
   }
 
   findAll() {
-    return this.model.find();
+    return this.model.find().sort({user:1});
   }
 
   findOne(id: string) {
