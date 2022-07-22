@@ -1,10 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Request ,Delete, UseGuards, ExecutionContext } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Request, Delete, UseGuards, ExecutionContext, HttpException, SetMetadata } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { JwtAuthGuard } from '../auth/local-auth.guard';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { Roles } from 'src/common/role/roles.decorator';
+import { Roles, ROLES_KEY } from 'src/common/role/roles.decorator';
 import { Role } from 'src/common/role/role.enum';
 import { RolesGuard } from '../common/role/roles.guard';
 
@@ -47,7 +47,21 @@ export class UsersController {
 
   @Roles(Role.Admin)
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  async remove(@Param('id') id: string) {
+    const usr = await this.usersService.findOne(id);
+    if (usr){
+
+      for(let rol of usr.roles){
+          const keys = Object.keys;
+          for(const r of keys(rol)){
+            const roleAsKey = r as keyof typeof rol;
+            if (rol[roleAsKey]=='admin'){
+              throw new HttpException("No se puede eliminar a un admin",403);
+            }
+          }
+      } 
+    }
     return this.usersService.remove(id);
   }
+
 }

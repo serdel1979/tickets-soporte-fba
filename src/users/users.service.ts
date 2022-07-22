@@ -29,10 +29,11 @@ export class UsersService {
     return this.model.find().sort({user:1});
   }
 
-  findOne(id: string) {
-    return this.model.findById(id).exec();
+  async findOne(id: string) {
+    return await this.model.findById({_id:id}).exec();
   }
 
+ 
   async update(id: string, updateUserDto: UserDto):Promise<IUser> {
     const hash = await this.hashPassword(updateUserDto.password);
     const user = {...updateUserDto, password: hash}
@@ -40,7 +41,7 @@ export class UsersService {
   }
 
   async remove(id: string) {
-    await this.model.findByIdAndDelete(id);
-    return { status: HttpStatus.OK , msg: 'deleted' }
+    //await this.model.findByIdAndDelete(id);
+    return await this.model.findByIdAndDelete(id);
   }
 }
