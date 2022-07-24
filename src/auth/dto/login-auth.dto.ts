@@ -6,6 +6,6 @@ export class LoginAuthDto {
     user: string;
     @IsNotEmpty()
     @MinLength(4)
-    @MaxLength(12)
+    @MaxLength(20)
     password:string;
 }
