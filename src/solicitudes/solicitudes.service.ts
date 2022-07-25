@@ -4,7 +4,7 @@ import { Model } from 'mongoose';
 import { ISolicitud } from 'src/common/interfaces/solicitud.interface';
 import { SOLICITUD } from 'src/common/models/models';
 import { CreateSolicitudDto } from './dto/create-solicitude.dto';
-import { UpdateSolicitudeDto } from './dto/update-solicitude.dto';
+import { UpdateSolicitudDto} from './dto/update-solicitude.dto';
 
 @Injectable()
 export class SolicitudesService {
@@ -24,7 +24,7 @@ export class SolicitudesService {
     return await this.model.findById({_id:id}).exec();
   }
 
-  async update(id: string, updateSolicitudDto: UpdateSolicitudeDto) {
+  async update(id: string, updateSolicitudDto: UpdateSolicitudDto) {
     const  solicitud = {...updateSolicitudDto}
     return await this.model.findByIdAndUpdate(id,solicitud,{new : true});
   }

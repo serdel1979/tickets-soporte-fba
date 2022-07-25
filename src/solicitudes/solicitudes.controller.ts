@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
 import { SolicitudesService } from './solicitudes.service';
 import { CreateSolicitudDto } from './dto/create-solicitude.dto';
-import { UpdateSolicitudeDto } from './dto/update-solicitude.dto';
+import { UpdateSolicitudDto } from './dto/update-solicitude.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { RolesGuard } from 'src/common/role/roles.guard';
 import { JwtAuthGuard } from 'src/auth/local-auth.guard';
@@ -18,7 +18,6 @@ export class SolicitudesController {
 
   @Post()
   create(@Body() createSolicitudDto: CreateSolicitudDto) {
-    console.log(createSolicitudDto);
     return this.solicitudesService.create(createSolicitudDto);
   }
 
@@ -35,7 +34,7 @@ export class SolicitudesController {
   @UseGuards(RolesGuard)
   @Roles(Role.Admin)
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSolicitudDto: UpdateSolicitudeDto) {
+  update(@Param('id') id: string, @Body() updateSolicitudDto: UpdateSolicitudDto) {
     return this.solicitudesService.update(id, updateSolicitudDto);
   }
 
