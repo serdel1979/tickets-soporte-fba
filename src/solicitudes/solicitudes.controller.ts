@@ -21,6 +21,8 @@ export class SolicitudesController {
     return this.solicitudesService.create(createSolicitudDto);
   }
 
+  @UseGuards(RolesGuard)
+  @Roles(Role.Admin)
   @Get()
   findAll() {
     return this.solicitudesService.findAll();
@@ -30,6 +32,13 @@ export class SolicitudesController {
   findByUser(@Param('depto') depto: string) {
     return this.solicitudesService.findByUser(depto);
   }
+
+  
+  @Get('dehoy/:depto')
+  findByUserToday(@Param('depto') depto: string) {
+    return this.solicitudesService.findByUserToday(depto);
+  }
+
 
   @Get(':id')
   findOne(@Param('id') id: string) {
