@@ -26,6 +26,11 @@ export class SolicitudesController {
     return this.solicitudesService.findAll();
   }
 
+  @Get(':depto')
+  findByUser(@Param('depto') depto: string) {
+    return this.solicitudesService.findByUser(depto);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.solicitudesService.findOne(id);

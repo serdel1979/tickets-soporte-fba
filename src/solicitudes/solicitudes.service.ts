@@ -20,6 +20,11 @@ export class SolicitudesService {
     return this.model.find().sort({createdAt:1});
   }
 
+  
+  findByUser(depto: string) {
+    return this.model.find({departamento:depto});
+  }
+
   async findOne(id: string) {
     return await this.model.findById({_id:id}).exec();
   }
