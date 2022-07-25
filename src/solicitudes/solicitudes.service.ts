@@ -17,12 +17,12 @@ export class SolicitudesService {
   }
 
   findAll() {
-    return this.model.find().sort({createdAt:1});
+    return this.model.find({}).sort({createdAt:-1});
   }
 
   
   findByUser(depto: string) {
-    return this.model.find({departamento:depto});
+    return this.model.find({departamento:depto}).sort({createdAt:-1});;
   }
 
   async findOne(id: string) {
