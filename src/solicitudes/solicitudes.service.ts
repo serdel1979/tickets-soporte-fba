@@ -1,26 +1,35 @@
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { ISolicitud } from 'src/common/interfaces/solicitud.interface';
+import { SOLICITUD } from 'src/common/models/models';
 import { CreateSolicitudDto } from './dto/create-solicitude.dto';
 import { UpdateSolicitudeDto } from './dto/update-solicitude.dto';
 
 @Injectable()
 export class SolicitudesService {
-  create(createSolicitudeDto: CreateSolicitudDto) {
-    return 'This action adds a new solicitude';
+
+  constructor(@InjectModel(SOLICITUD.name) private readonly model: Model<ISolicitud>){}
+
+  async create(createSolicitudeDto: CreateSolicitudDto):Promise<ISolicitud> {
+    const newSolicitud = new this.model({ ...createSolicitudeDto});
+    return await newSolicitud.save();
   }
 
   findAll() {
-    return `This action returns all solicitudes`;
+    return this.model.find().sort({createdAt:1});
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} solicitude`;
+  async findOne(id: string) {
+    return await this.model.findById({_id:id}).exec();
   }
 
-  update(id: number, updateSolicitudeDto: UpdateSolicitudeDto) {
-    return `This action updates a #${id} solicitude`;
+  async update(id: string, updateSolicitudDto: UpdateSolicitudeDto) {
+    const  solicitud = {...updateSolicitudDto}
+    return await this.model.findByIdAndUpdate(id,solicitud,{new : true});
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} solicitude`;
+  async remove(id: string) {
+    return await this.model.findByIdAndDelete(id);
   }
 }

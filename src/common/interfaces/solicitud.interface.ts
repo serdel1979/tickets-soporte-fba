@@ -5,4 +5,5 @@ export interface ISolicitud extends Document{
     equipo: string;
     estado: string;
     informe: string;    
+    tecnico: string; 
 }

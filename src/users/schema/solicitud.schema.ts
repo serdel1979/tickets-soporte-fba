@@ -7,4 +7,5 @@ export const SolicitudSchema = new mongoose.Schema({
     equipo:{ type: String, required: true },
     estado:{ type: String},
     informe:{ type: String},
+    tecnico:{ type: String},
 },{timestamps: true},);

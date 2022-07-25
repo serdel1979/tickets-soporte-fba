@@ -18,6 +18,7 @@ export class SolicitudesController {
 
   @Post()
   create(@Body() createSolicitudDto: CreateSolicitudDto) {
+    console.log(createSolicitudDto);
     return this.solicitudesService.create(createSolicitudDto);
   }
 
@@ -28,20 +29,20 @@ export class SolicitudesController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.solicitudesService.findOne(+id);
+    return this.solicitudesService.findOne(id);
   }
 
   @UseGuards(RolesGuard)
   @Roles(Role.Admin)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateSolicitudDto: UpdateSolicitudeDto) {
-    return this.solicitudesService.update(+id, updateSolicitudDto);
+    return this.solicitudesService.update(id, updateSolicitudDto);
   }
 
   @UseGuards(RolesGuard)
   @Roles(Role.Admin)
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.solicitudesService.remove(+id);
+    return this.solicitudesService.remove(id);
   }
 }
