@@ -7,6 +7,7 @@ import { RolesGuard } from 'src/common/role/roles.guard';
 import { JwtAuthGuard } from 'src/auth/local-auth.guard';
 import { Roles } from 'src/common/role/roles.decorator';
 import { Role } from 'src/common/role/role.enum';
+import { RoutesGuard } from './routes.guard';
 
 
 @ApiBearerAuth()
@@ -28,6 +29,7 @@ export class SolicitudesController {
     return this.solicitudesService.findAll();
   }
 
+  
   @Get(':depto')
   findByUser(@Param('depto') depto: string) {
     return this.solicitudesService.findByUser(depto);
@@ -43,6 +45,7 @@ export class SolicitudesController {
   }
 
   
+  @UseGuards(RoutesGuard)
   @Get('dehoy/:depto')
   findByUserToday(@Param('depto') depto: string) {
     return this.solicitudesService.findByUserToday(depto);
