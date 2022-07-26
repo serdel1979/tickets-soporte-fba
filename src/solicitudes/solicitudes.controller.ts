@@ -33,6 +33,15 @@ export class SolicitudesController {
     return this.solicitudesService.findByUser(depto);
   }
 
+
+
+  @UseGuards(RolesGuard)
+  @Roles(Role.Admin)
+  @Get('sop/:depto')
+  findByUserAdmin(@Param('depto') depto: string) {
+    return this.solicitudesService.findByUserAdmin(depto);
+  }
+
   
   @Get('dehoy/:depto')
   findByUserToday(@Param('depto') depto: string) {

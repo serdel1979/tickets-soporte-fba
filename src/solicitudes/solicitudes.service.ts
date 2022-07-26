@@ -25,6 +25,13 @@ export class SolicitudesService {
     return this.model.find({ departamento: depto }).sort({ createdAt: -1 });;
   }
 
+
+
+  findByUserAdmin(depto: string) {
+    return this.model.find({ departamento: depto }).sort({ createdAt: -1 });;
+  }
+
+
   findByUserToday(depto: string) {
     let desde: string = "T00:00:00.000Z";
     let hast: string = "T23:59:59.999Z";
