@@ -4,6 +4,7 @@ import { SolicitudesController } from './solicitudes.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { SOLICITUD } from '../common/models/models';
 import { SolicitudSchema } from 'src/users/schema/solicitud.schema';
+import { RoutesGuard } from './routes.guard';
 
 @Module({
   imports: [
@@ -16,6 +17,6 @@ import { SolicitudSchema } from 'src/users/schema/solicitud.schema';
     ]),
   ],
   controllers: [SolicitudesController],
-  providers: [SolicitudesService]
+  providers: [SolicitudesService, RoutesGuard]
 })
 export class SolicitudesModule {}

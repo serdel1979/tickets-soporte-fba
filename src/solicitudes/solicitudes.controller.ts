@@ -22,6 +22,15 @@ export class SolicitudesController {
     return this.solicitudesService.create(createSolicitudDto);
   }
 
+
+  @UseGuards(RolesGuard)
+  @Roles(Role.Admin)
+  @Get()
+  findAllSolicituds() {
+    return this.solicitudesService.findAll();
+  }
+
+
   @UseGuards(RolesGuard)
   @Roles(Role.Admin)
   @Get('defecha')
@@ -30,6 +39,7 @@ export class SolicitudesController {
   }
 
   
+  @UseGuards(RoutesGuard)
   @Get(':depto')
   findByUser(@Param('depto') depto: string) {
     return this.solicitudesService.findByUser(depto);
