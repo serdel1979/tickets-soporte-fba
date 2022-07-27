@@ -24,9 +24,9 @@ export class SolicitudesController {
 
   @UseGuards(RolesGuard)
   @Roles(Role.Admin)
-  @Get()
+  @Get('defecha')
   findAll() {
-    return this.solicitudesService.findAll();
+    return this.solicitudesService.findSolicitudsToday();
   }
 
   
@@ -52,10 +52,11 @@ export class SolicitudesController {
   }
 
 
-  @Get(':id')
+  @Get('/solicitud/:id')
   findOne(@Param('id') id: string) {
     return this.solicitudesService.findOne(id);
   }
+
 
   @UseGuards(RolesGuard)
   @Roles(Role.Admin)
