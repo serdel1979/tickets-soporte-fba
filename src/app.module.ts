@@ -6,6 +6,8 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { SolicitudesModule } from './solicitudes/solicitudes.module';
+import { WsGateway } from './ws/ws.gateway';
+import { WsService } from './ws/ws.service';
 
 @Module({
   imports: [
@@ -22,6 +24,6 @@ import { SolicitudesModule } from './solicitudes/solicitudes.module';
     SolicitudesModule
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, WsGateway, WsService],
 })
 export class AppModule { }
