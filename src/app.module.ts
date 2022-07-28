@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { SolicitudesModule } from './solicitudes/solicitudes.module';
 import { WsGateway } from './ws/ws.gateway';
 import { WsService } from './ws/ws.service';
+import { WsModule } from './ws/ws.module';
 
 @Module({
   imports: [
@@ -21,7 +22,8 @@ import { WsService } from './ws/ws.service';
     }),
     UsersModule,
     AuthModule,
-    SolicitudesModule
+    SolicitudesModule,
+    WsModule
   ],
   controllers: [AppController],
   providers: [AppService, WsGateway, WsService],
