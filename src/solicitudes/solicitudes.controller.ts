@@ -62,9 +62,11 @@ export class SolicitudesController {
   }
 
 
+  @UseGuards(RolesGuard)
+  @Roles(Role.Admin)
   @Get('/solicitud/:id')
   findOne(@Param('id') id: string) {
-    return this.solicitudesService.findOne(id);
+     return this.solicitudesService.findOne(id);
   }
 
 
