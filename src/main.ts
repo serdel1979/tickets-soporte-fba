@@ -11,6 +11,7 @@ async function bootstrap() {
   app.useGlobalFilters(new AllExceptionFilter());
   app.useGlobalInterceptors(new TomeOutInterceptor());
   app.useGlobalPipes(new ValidationPipe());
+  app.setGlobalPrefix('api/v1');
   const config = new DocumentBuilder()
     .addBearerAuth()
     .setTitle('Tickets')
@@ -21,7 +22,6 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  app.setGlobalPrefix('api/v1');
   await app.listen(5000);
 }
 bootstrap();
