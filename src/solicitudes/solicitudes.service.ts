@@ -32,18 +32,27 @@ export class SolicitudesService {
   }
 
 
+  //findByUserToday(depto: string) {
+  //  let desde: string = "T00:00:00.000Z";
+  //  let hast: string = "T23:59:59.999Z";
+  //  let hoy = new Date();
+  //  let sindate = hoy.toISOString().split("T")[0];
+  //  let filtrodesde = sindate + desde;
+  //  let filtrohasta = sindate + hast;
+  //  let afechadesde = new Date(filtrodesde);
+  //  let afechahasta = new Date(filtrohasta);
+  //  return this.model.find({ departamento: depto }).find({ $and: [
+  //    { createdAt: { $gte: afechadesde } },
+  //    { createdAt: { $lte: afechahasta } }
+  //  ]}).sort({ createdAt: -1 });;
+ // }
+
+
+ //traigo los vistos y los pendientes, no los del dia
   findByUserToday(depto: string) {
-    let desde: string = "T00:00:00.000Z";
-    let hast: string = "T23:59:59.999Z";
-    let hoy = new Date();
-    let sindate = hoy.toISOString().split("T")[0];
-    let filtrodesde = sindate + desde;
-    let filtrohasta = sindate + hast;
-    let afechadesde = new Date(filtrodesde);
-    let afechahasta = new Date(filtrohasta);
     return this.model.find({ departamento: depto }).find({ $and: [
-      { createdAt: { $gte: afechadesde } },
-      { createdAt: { $lte: afechahasta } }
+      { estado: {$ne:"PENDIENTE"}},
+      { estado: {$ne:"VISTO"}}
     ]}).sort({ createdAt: -1 });;
   }
 
@@ -76,7 +85,7 @@ export class SolicitudesService {
 
 //ahora no traigo los del día, sino los "NO SOLUCIONADOS"
   findSolicitudsToday() {   //.toLocaleDateString();
-    return this.model.find({ estado: {$ne:"SOLUCIONADO"} }).sort({ createdAt: -1 });
+    return this.model.find({$and: [{estado: {$ne:"SOLUCIONADO"}},{ estado: {$ne:"CERRADO"}}]}).sort({ createdAt: -1 });
   }
 
 
