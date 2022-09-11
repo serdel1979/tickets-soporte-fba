@@ -9,10 +9,13 @@ import { SolicitudesModule } from './solicitudes/solicitudes.module';
 import { WsGateway } from './ws/ws.gateway';
 import { WsService } from './ws/ws.service';
 import { WsModule } from './ws/ws.module';
+import { SeedModule } from './seed/seed.module';
+import { EnvConfiguration } from './config/app.config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
+      load: [ EnvConfiguration ],
       envFilePath: ['.env.development'],
       isGlobal: true,
     }),
@@ -23,7 +26,8 @@ import { WsModule } from './ws/ws.module';
     UsersModule,
     AuthModule,
     SolicitudesModule,
-    WsModule
+    WsModule,
+    SeedModule
   ],
   controllers: [AppController],
   providers: [AppService, WsGateway, WsService],

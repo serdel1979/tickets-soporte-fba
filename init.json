@@ -1,0 +1,165 @@
+[{
+  "_id": {
+    "$oid": "62ce24250b085c260a9b5973"
+  },
+  "user": "soporte",
+  "password": "$2b$10$QOXA2AJeU.QHwKHnQJhbUORHZiB7NNp0tRmslPvll344Bof6bu/Ti",
+  "roles": [
+    {
+      "Role": "admin"
+    },
+    {
+      "Role": "user"
+    }
+  ],
+  "equipment": [],
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1657676837197"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1657676837197"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62ce24690b085c260a9b5977"
+  },
+  "user": "musica",
+  "password": "$2b$10$90jOIGwvli0tlT./38pkjej8fHXSLZ.hxQN.0yWw.pDv1MPceXCN.",
+  "roles": [
+    {
+      "Role": "user"
+    }
+  ],
+  "equipment": [],
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1657676905786"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1658731654575"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62ce247b0b085c260a9b5979"
+  },
+  "user": "plastica",
+  "password": "$2b$10$013oa9jy4mfhR8xqMGYiieGgwiXhHL3Pe68l5CAfGNjMyCWblxIzC",
+  "roles": [
+    {
+      "Role": "user"
+    }
+  ],
+  "equipment": [],
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1657676923298"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1657676923298"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62ce24960b085c260a9b597d"
+  },
+  "user": "planificacion",
+  "password": "$2b$10$2vNEwxqVS1i3n5nPvT1MIO9S9KpZNUs0QDkOlqu1YbUV5ZfoIAQCi",
+  "roles": [
+    {
+      "Role": "user"
+    }
+  ],
+  "equipment": [],
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1657676950148"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1657676950148"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62ce24ac0b085c260a9b5981"
+  },
+  "user": "compras",
+  "password": "$2b$10$F/pVj.RoxH6GnTPNQtMRt.T15kkDk9h6zOQHs/CnTNXIgHGcEXDOS",
+  "roles": [
+    {
+      "Role": "user"
+    }
+  ],
+  "equipment": [],
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1657676972183"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1658636917253"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62d07893c16bf29dc810c47a"
+  },
+  "user": "vicedecanato",
+  "password": "$2b$10$Z/V9qZ.RHLtOZfOG/NFLQObPKAr9NFFUWp43td0CZmnD06wKfnrxG",
+  "roles": [
+    {
+      "Role": "user"
+    }
+  ],
+  "equipment": [],
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1657829523987"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1657829523987"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62d0897dcf1506974f16c6df"
+  },
+  "user": "historico_y_sociales",
+  "password": "$2b$10$7YjSHuucynHLFmwHWGLub.uAQeDNbFJlWAZ3yiKGT0KHIbYouprWa",
+  "roles": [
+    {
+      "Role": "user"
+    }
+  ],
+  "equipment": [],
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1657833853525"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1659040747172"
+    }
+  },
+  "__v": 0
+}]
