@@ -1,6 +1,6 @@
 version: '3'
-services:
 
+services:
   nest:
     container_name: nest_app
     build:
@@ -14,7 +14,8 @@ services:
       JWT_SECRET=AEIUIJALKJLAKJLKSX!
     depends_on:
       - db
-
+    links:
+      - mongo
 
 
   db: 
