@@ -22,7 +22,7 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN com ci --omit=dev
+RUN npm ci --omit=dev --legacy-peer-deps
 
 COPY --from=development /app/dist/ ./dist/
 
