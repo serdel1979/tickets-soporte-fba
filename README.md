@@ -42,6 +42,17 @@ npm i -g nestjs/cli
 ```bash
 $ docker-compose up -d
 ```
+Para construir la imagen de docker
+```
+$ docker build -t tickets-backend .
+```
+Si falla o da error de puertos prohibidos en windows
+```
+net stop winnat
+docker start tickets-backend
+net start winnat
+
+```
 
 .5 Clonar el archivo __.env.template__ y renombrar la copia a __.env__
 

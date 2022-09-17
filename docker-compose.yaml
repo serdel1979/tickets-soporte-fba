@@ -7,7 +7,7 @@ services:
       context: ./
     restart: always
     ports:
-      - 3030:3000
+      - 3000:3000
     environment:
       - URI_MONGODB=mongodb://db/ticketsbd
       - PORT=3000
