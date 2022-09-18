@@ -18,6 +18,7 @@ services:
       - db
 
 
+
   db: 
     image: mongo:5
     container_name: nest_mongo
@@ -28,4 +29,5 @@ services:
       MONGO_DATABASE: ticketsbd
     volumes:
       - ./mongo:/data/db
+
   
