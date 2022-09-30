@@ -50,10 +50,7 @@ export class SolicitudesService {
 
  //traigo los vistos y los pendientes, no los del dia
   findByUserToday(depto: string) {
-    return this.model.find({ departamento: depto }).find({ $and: [
-      { estado: {$ne:"PENDIENTE"}},
-      { estado: {$ne:"VISTO"}}
-    ]}).sort({ createdAt: -1 });;
+    return this.model.find({ departamento: depto }).find({$and: [{estado: {$ne:"SOLUCIONADO"}},{ estado: {$ne:"CERRADO"}}]}).sort({ createdAt: -1 });;
   }
 
   //console.log(fechaActual.toLocaleDateString('ar-EG', { year:"numeric", month:"short", weekday:"long"}))
